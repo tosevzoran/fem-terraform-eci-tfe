@@ -7,17 +7,17 @@ locals {
 
   workspace = {
     "fem-eci-tfe" = {
-      description = "FrontEndMasters Devops workspace"
-      execution_mode = "remote"
-      project_id = module.project["fem-eci-project"].id
+      description         = "FrontEndMasters Devops workspace"
+      execution_mode      = "remote"
+      project_id          = module.project["fem-eci-project"].id
       vcs_repo_identifier = "${var.github_organization_name}/fem-terraform-eci-tfe"
     }
 
 
     "fem-eci-github" = {
-      description = "FrontEndMasters Github workspace"
-      execution_mode = "remote"
-      project_id = module.project["fem-eci-project"].id
+      description         = "FrontEndMasters Github workspace"
+      execution_mode      = "remote"
+      project_id          = module.project["fem-eci-project"].id
       vcs_repo_identifier = "${var.github_organization_name}/fem-terraform-eci-github"
     }
 
@@ -73,6 +73,26 @@ locals {
           category = "terraform"
           key      = "vpc_name"
           value    = "fem-eci"
+        },
+      ]
+    }
+
+    "fem-eci-product-service-prod" = {
+      description         = "Automation for product service resources."
+      execution_mode      = "remote"
+      project_id          = module.project["fem-eci-project"].id
+      vcs_repo_identifier = "${var.github_organization_name}/fem-eci-terraform-product-service"
+
+      variables = [
+        {
+          category = "terraform"
+          key      = "cluster_name"
+          value    = "fem-eci-tzoran-prod"
+        },
+        {
+          category = "terraform"
+          key      = "environment"
+          value    = "prod"
         },
       ]
     }
